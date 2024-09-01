@@ -185,47 +185,57 @@
 {{-- modal --}}
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" style="border-radius: 10px; padding: 20px;">
-            <div class="d-flex justify-content-end">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 24px; color: #000;"></button>
-            </div>
-            <div class="modal-body">
-                <div class="d-flex align-items-center mb-4">
-                  @foreach ($products->first()->productImages as $index => $image)
-                  @if ($loop->first)
-                    <img src="{{ asset('images/' . $image->image_name) }}" alt="Product Image" style="width: 100px; height: 120px; border-radius: 12px; object-fit: cover;" class="me-3">
-                  @endif
-                  @endforeach  
-                    <div>
-                        <div class="product-title" style="font-size: 18px; font-weight: 700; margin-bottom: 4px;">{{$pro->product_name}}</div>
-                        <div class="product-subtitle" style="font-size: 14px; color: #666;">{{$pro->product_subtitle}}</div>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="border-radius: 10px; padding: 20px;">
+          <div class="d-flex justify-content-end">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 24px; color: #000;"></button>
+          </div>
+          <div class="modal-body">
+              <div class="d-flex align-items-center mb-4">
+                @foreach ($products->first()->productImages as $index => $image)
+                @if ($loop->first)
+                  <img src="{{ asset('images/' . $image->image_name) }}" alt="Product Image" style="width: 100px; height: 120px; border-radius: 12px; object-fit: cover;" class="me-3">
+                @endif
+                @endforeach 
+                
+                <div>
+                    <div style="margin-bottom: 1rem;">
+                        <div class="product-title" style="font-size: 18px; font-weight: 700; margin-bottom: -4px;">{{$pro->product_name}}</div>
                         <p hidden id="productId">{{$pro->id}}</p>
                     </div>
-                </div>
+                    <div class="d-flex align-items-start mt-14">
+                      <div>
+                          <div class="product-subtitle" style="font-size: 14px; color: #666; font-weight:200;">{{$pro->product_subtitle}}</div>
 
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div class="d-flex align-items-center">                                       
-                        <div class="color-circle d-none" data-color="color1" style="background-color: #ECDECC"></div>
-                        <div class="color-circle d-none" data-color="color2" style="background-color: #BBD278"></div>
-                        <div class="color-circle d-none" data-color="color3" style="background-color: #BBC1F8"></div>
-                        <div class="color-circle d-none" data-color="color4" style="background-color: #FFD3F8"></div>
-                        <div class="color-circle d-none" data-color="color5" style="background: linear-gradient(to top, #FFB6B6, #98C185)"></div>
-                        <div class="size-label" id="modalSelectedSize" style="font-size: 14px; margin-left:30px; background-color: #f0f0f0; padding: 6px 12px; border-radius: 8px;"></div>                      
-                    </div>
-                    <div class="quantity-control" style="display: flex; align-items: center; background-color: #f3f3f3; border-radius: 30px; padding: 10px 43px;">
-                        <button id="modalDecrement" class="btn p-0" style="background: none; border: none; margin-right:20px; font-size: 24px; color: #3a4980;">-</button>
-                        <span id="modalQuantity" style="font-size: 18px; font-weight: 700; color: #3a4980; margin: 0 10px;">1</span>
-                        <button id="modalIncrement" class="btn p-0" style="background: none; border: none; margin-left:20px; font-size: 24px; color: #3a4980;">+</button>
-                    </div>
+                          <div class="d-flex align-items-center">                                       
+                              <div class="color-circle d-none modal" data-color="color1" style="background-color: #ECDECC"></div>
+                              <div class="color-circle d-none modal" data-color="color2" style="background-color: #BBD278"></div>
+                              <div class="color-circle d-none modal" data-color="color3" style="background-color: #BBC1F8"></div>
+                              <div class="color-circle d-none modal" data-color="color4" style="background-color: #FFD3F8"></div>
+                              <div class="color-circle d-none modal" data-color="color5" style="background: linear-gradient(to top, #FFB6B6, #98C185)"></div>
+                              <div class="size-label" id="modalSelectedSize" style="font-size: 12px; margin-left:16px; background-color: #f0f0f0; padding: 6px 12px; border-radius: 8px;"></div>                      
+                              
+                          </div>
+                      </div> 
+                      
+                      <div class="quantity-control" style="display: flex; align-items: center; background-color: #f3f3f3; border-radius: 30px; margin-left: 36px; padding: 2px 20px;">
+                          <button id="modalDecrement" class="btn p-0" style="background: none; border: none; margin-right:20px; font-size: 24px; color: #3a4980;">-</button>
+                          <span id="modalQuantity" style="font-size: 18px; font-weight: 700; color: #3a4980; margin: 0 10px;">1</span>
+                          <button id="modalIncrement" class="btn p-0" style="background: none; border: none; margin-left:20px; font-size: 24px; color: #3a4980;">+</button>
+                      </div>
+                  </div>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <button type="button" id="proceedToCheckoutBtn" class="btn btn-primary" style="font-size: 18px; background-color: #3A4B8D; padding: 6px 90px; border-radius: 50px; font-weight: 700;">
-                        $<span id="modalTotalPrice">{{ $price }}</span> Buy Now
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+              </div>
+
+              <div class="d-flex justify-content-center">
+                  <button type="button" id="proceedToCheckoutBtn" class="btn btn-primary" style="font-size: 18px; background-color: #3A4B8D; padding: 8px 60px; border-radius: 50px; font-weight: 700;">
+                      $<span id="modalTotalPrice">{{ $price }}</span> Buy Now
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
+
+
 @endsection
