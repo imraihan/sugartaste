@@ -11,5 +11,5 @@
 
 Please clone the project, import the sql file and run the project in browser. http://127.0.0.1:8000(or your port).
 
-Stack : Frontend - HTML, CSS, Ajax ,Bootstrap , Backend - PHP, Laravel, Databse - Mysql
+Stack : Frontend - HTML, CSS, Ajax ,Bootstrap , Backend - PHP, Laravel, Database - Mysql. Database Name: laravel.sql
  
